@@ -1,0 +1,42 @@
+.root {
+  background-color: #fff;
+  border: 1px solid $component-stroke;
+  border-radius: 3px;
+  :global {
+    .header {
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 16px;
+      font-family: "hw-b";
+      border-bottom: 1px solid $component-stroke;
+      i {
+        margin-right: 4px;
+      }
+    }
+    .content {
+      padding: 20px;
+      ul.list {
+        li {
+          line-height: 30px;
+          p {
+            @include ellipsis();
+          }
+          a {
+            display: flex;
+            align-items: center;
+            color: $text-color-primary;
+            &:hover {
+              color: $brand-color;
+            }
+            i {
+              margin-right: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

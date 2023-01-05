@@ -1,0 +1,57 @@
+.root {
+
+  :global {
+    .container {
+      display: flex;
+      flex-direction: column;
+      border-radius: 3px;
+      &.card-sqare {
+        .header {
+          position: relative;
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 3px;
+            height: 50%;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: $brand-color;
+          }
+        }
+      }
+
+      &.card-simple {
+        border: 1px solid $component-stroke;
+        .header {
+          border-top: unset;
+          border-left: unset;
+          border-right: unset;
+        }
+        .content {
+          background-color: #fff;
+        }
+      }
+
+      .header {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+        background-color: #fff;
+        padding: 0 16px;
+        border-radius: 3px;
+        border: 1px solid $component-stroke;
+        .title {
+          font-weight: bold;
+        }
+      }
+      .content {
+        flex: auto;
+        padding: 20px 0;
+      }
+    }
+  }
+}

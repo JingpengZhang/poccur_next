@@ -1,0 +1,16 @@
+.appLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f4f9;
+
+  .content {
+    flex: auto;
+    padding: 100px 24px 0 24px;
+    margin: 0 auto;
+  }
+
+  .footer {
+    flex-shrink: 0;
+  }
+}
