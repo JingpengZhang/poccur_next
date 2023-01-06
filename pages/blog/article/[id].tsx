@@ -71,10 +71,14 @@ VueRouter.prototype.replace = function (location, resolve, reject) {
 
   return (<Layout pageWidth='1200px'>
     <div className={style.root}>
-      <div className='article-cover-box'>
-        <img src='https://img-blog.csdnimg.cn/img_convert/751ef4450d8fad6a553f36957667ca6a.jpeg' />
-        <div className='fuzzy-cover'></div>
-      </div>
+    
+      {/**
+        <div className='article-cover-box'>
+          <img src='https://bbs-img.huaweicloud.com/blogs/img/20221220/1671518307965558565.jpg' />
+          <div className='fuzzy-cover'></div>
+       </div>
+      */}
+
       <div className='left'>
         <div className='article-container'>
           <h1 className='title'>Vue 解决编程式导航多次携带相同参数跳转同一页面报错问题</h1>
