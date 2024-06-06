@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev:server": "bun --watch server/src/index.ts",
+    "dev:client": "next dev",
+    "dev": "pnpm run dev:server & pnpm run dev:client",
     "build": "next build",
-    "start": "next start",
+    "start": "next start & pnpm run dev:server",
     "lint": "next lint"
   },
   "dependencies": {
+    "elysia": "^1.0.22",
+    "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.3"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "typescript": "^5",
