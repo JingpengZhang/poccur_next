@@ -20,6 +20,9 @@ export const users = new Elysia({ prefix: "/user" })
         email: t.String(),
         password: t.String(),
       }),
+      detail: {
+        tags: ["User"],
+      },
     },
   )
   .post(
@@ -56,5 +59,8 @@ export const users = new Elysia({ prefix: "/user" })
           }),
         }),
       }),
+      detail: {
+        tags: ["User"],
+      },
     },
   );
