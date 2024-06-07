@@ -11,6 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@elysiajs/swagger": "^1.0.5",
     "drizzle-orm": "^0.31.1",
     "elysia": "^1.0.22",
     "mysql2": "^3.10.0",
