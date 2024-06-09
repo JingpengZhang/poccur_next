@@ -3,6 +3,7 @@ import swagger from "@elysiajs/swagger";
 import jwt from "@elysiajs/jwt";
 import { userModel } from "./model/user";
 import UserService from "./module/user/user.service";
+import Response from "./libs/response";
 
 const app = new Elysia()
   // swagger 文档
@@ -43,8 +44,27 @@ const app = new Elysia()
       )
       .post(
         "/sign-in",
-        ({ body }) => {
-          return UserService.signIn(body.email, body.password);
+        async ({ jwt, body }) => {
+          // 查看是否匹配成功
+          const result = await UserService.matchPassword(
+            body.email,
+            body.password,
+          );
+
+          if (result && result.length > 0) {
+            const user = result[0];
+            // 生成 token
+            const token = await jwt.sign({
+              id: user.id,
+            });
+
+            return Response.ok({
+              data: {
+                token,
+              },
+            });
+          }
+          return Response.error("SIGN_IN_FAIL");
         },
         {
           body: "user.sign-in",

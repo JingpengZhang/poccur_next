@@ -20,6 +20,21 @@ abstract class UserService {
   }
 
   /**
+   * 匹配用户用户名与密码
+   * @param email 邮箱
+   * @param password 密码
+   * @returns 是否匹配成功
+   */
+  static async matchPassword(email: string, password: string) {
+    const result = await db
+      .select()
+      .from(users)
+      .where(and(eq(users.email, email), eq(users.password, password)));
+
+    return result;
+  }
+
+  /**
    * 登录
    * @param email 邮箱
    * @param password 密码
