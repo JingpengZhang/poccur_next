@@ -21,8 +21,10 @@ export const CategoryController = new Elysia({ prefix: "/category" })
             id: result[0].insertId, // 插入的数据 id
           },
         });
-      } catch (err) {
-        return Response.error("UNKOWN");
+      } catch (err: any) {
+        let message: string | undefined = undefined;
+        if (err["errno"] === 1062) message = "字段重复";
+        return Response.error("UNKOWN", { message });
       }
     },
     {
