@@ -1,6 +1,7 @@
 import Elysia from "elysia";
 import swagger from "@elysiajs/swagger";
 import { userController } from "./module/user/user.controller";
+import { CategoryController } from "./module/category/category.controller";
 
 const app = new Elysia()
   // swagger 文档
@@ -17,6 +18,7 @@ const app = new Elysia()
     }),
   )
   .use(userController)
+  .use(CategoryController)
   .get("/", () => "hello poccur_next")
   .listen(3001);
 

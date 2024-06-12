@@ -2,7 +2,7 @@ import { defineConfig } from "drizzle-kit";
 
 const schemaUrlPrefix = "./server/src/db/schema/";
 
-const schemas = ["users"];
+const schemas = ["users", "categories"];
 
 export default defineConfig({
   schema: schemas.map((v) => schemaUrlPrefix + v + ".ts"),
