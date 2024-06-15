@@ -1,9 +1,10 @@
 import Elysia from "elysia";
 import { JwtService } from "../../common/service/jwt-service";
-import { CategoryModel } from "./category.model";
+import { CategoryModel, CategorySchemas } from "./category.model";
 import CategoryService from "./category.service";
 import Response from "../../libs/response";
 import { categories } from "../../db/schema/categories";
+import { builtinModules } from "module";
 
 export const CategoryController = new Elysia({ prefix: "/category" })
   .use(JwtService)
@@ -50,5 +51,20 @@ export const CategoryController = new Elysia({ prefix: "/category" })
     },
     {
       body: "category.update",
+    },
+  )
+  .delete(
+    "/",
+    async ({ body }) => {
+      try {
+        // 删除分类
+        await CategoryService.delete(parseInt(body.id));
+        return Response.ok();
+      } catch (err: any) {
+        return Response.error("UNKOWN", { data: err });
+      }
+    },
+    {
+      body: "category.delete",
     },
   );

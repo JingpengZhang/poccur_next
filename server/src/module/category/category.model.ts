@@ -22,4 +22,7 @@ export const CategoryModel = new Elysia({
     id: CategorySchemas.id,
     name: CategorySchemas.name,
   }),
+  "category.delete": t.Object({
+    id: CategorySchemas.id,
+  }),
 });

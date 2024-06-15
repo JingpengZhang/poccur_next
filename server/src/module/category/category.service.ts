@@ -20,6 +20,11 @@ abstract class CategoryService {
       })
       .where(eq(categories.id, id));
   }
+
+  // 删除分类
+  static async delete(id: Category["id"]) {
+    return await db.delete(categories).where(eq(categories.id, id));
+  }
 }
 
 export default CategoryService;
