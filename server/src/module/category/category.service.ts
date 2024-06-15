@@ -1,5 +1,6 @@
+import { eq } from "drizzle-orm";
 import { db } from "../../db";
-import { NewCategory, categories } from "../../db/schema/categories";
+import { Category, NewCategory, categories } from "../../db/schema/categories";
 
 abstract class CategoryService {
   // 插入分类
@@ -8,6 +9,16 @@ abstract class CategoryService {
       name: data.name,
       createAt: new Date(),
     });
+  }
+
+  // 更新分类
+  static async update(id: Category["id"], data: Pick<NewCategory, "name">) {
+    return await db
+      .update(categories)
+      .set({
+        name: data.name,
+      })
+      .where(eq(categories.id, id));
   }
 }
 

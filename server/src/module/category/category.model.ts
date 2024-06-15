@@ -8,12 +8,18 @@ export const CategorySchemas = {
       message: "分类名不能为空",
     }),
   }),
+  // id
+  id: t.String(),
 };
 
 export const CategoryModel = new Elysia({
   name: "Model.Category",
 }).model({
   "category.create": t.Object({
+    name: CategorySchemas.name,
+  }),
+  "category.update": t.Object({
+    id: CategorySchemas.id,
     name: CategorySchemas.name,
   }),
 });

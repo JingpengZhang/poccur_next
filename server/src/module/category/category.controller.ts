@@ -3,6 +3,7 @@ import { JwtService } from "../../common/service/jwt-service";
 import { CategoryModel } from "./category.model";
 import CategoryService from "./category.service";
 import Response from "../../libs/response";
+import { categories } from "../../db/schema/categories";
 
 export const CategoryController = new Elysia({ prefix: "/category" })
   .use(JwtService)
@@ -29,5 +30,25 @@ export const CategoryController = new Elysia({ prefix: "/category" })
     },
     {
       body: "category.create",
+    },
+  )
+  .patch(
+    "/update",
+    async ({ body }) => {
+      try {
+        // 更新分类
+        await CategoryService.update(parseInt(body.id), {
+          name: body.name,
+        });
+
+        return Response.ok();
+      } catch (err: any) {
+        let message: string | undefined = undefined;
+        if (err["errno"] === 1062) message = "字段重复";
+        return Response.error("UNKOWN", { message });
+      }
+    },
+    {
+      body: "category.update",
     },
   );
