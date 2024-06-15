@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AntdWrapper from "@/components/AntdWrapper";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { ConfigProvider, theme } from "antd";
+import dark from "antd/lib/theme/themes/dark";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AntdWrapper>{children}</AntdWrapper>
+        <AntdRegistry>
+          <ConfigProvider theme={{ algorithm: () => dark }}>
+            {children}
+          </ConfigProvider>
+        </AntdRegistry>
       </body>
     </html>
   );
