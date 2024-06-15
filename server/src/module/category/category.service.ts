@@ -27,10 +27,10 @@ abstract class CategoryService {
   }
 
   // 获取列表
-  static async queryList(page: number, pageCount: number) {
+  static async queryList(page: number, pageSize: number) {
     return await db.query.categories.findMany({
-      limit: pageCount,
-      offset: (page - 1) * pageCount,
+      limit: pageSize,
+      offset: (page - 1) * pageSize,
     });
   }
 

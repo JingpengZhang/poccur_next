@@ -11,7 +11,7 @@ class Response {
     message?: string;
     list?: {
       page: number;
-      pageCount: number;
+      pageSize: number;
       total: number;
     };
   }) {

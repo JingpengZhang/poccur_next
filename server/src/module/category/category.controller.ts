@@ -77,7 +77,7 @@ export const CategoryController = new Elysia({ prefix: "/category" })
         // 查找列表
         const result = await CategoryService.queryList(
           query.page,
-          query.pageCount,
+          query.pageSize,
         );
 
         const total = await CategoryService.count();
@@ -85,7 +85,7 @@ export const CategoryController = new Elysia({ prefix: "/category" })
         return Response.ok({
           data: result,
           list: {
-            pageCount: query.pageCount,
+            pageSize: query.pageSize,
             page: query.page,
             total,
           },
