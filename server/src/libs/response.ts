@@ -6,11 +6,24 @@ class Response {
   /**
    * 请求成功数据
    */
-  static ok(options?: { data?: object; message?: string }) {
+  static ok(options?: {
+    data?: object;
+    message?: string;
+    list?: {
+      page: number;
+      pageCount: number;
+      total: number;
+    };
+  }) {
     return {
       code: 200,
       message: options?.message ?? RESPONSE_TYPES.SUCCESS.message,
-      data: options?.data,
+      data: options?.list
+        ? {
+            list: options.data,
+            ...options.list,
+          }
+        : options?.data,
     };
   }
 

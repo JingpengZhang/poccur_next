@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { count, eq } from "drizzle-orm";
 import { db } from "../../db";
 import { Category, NewCategory, categories } from "../../db/schema/categories";
 
@@ -24,6 +24,19 @@ abstract class CategoryService {
   // 删除分类
   static async delete(id: Category["id"]) {
     return await db.delete(categories).where(eq(categories.id, id));
+  }
+
+  // 获取列表
+  static async queryList(page: number, pageCount: number) {
+    return await db.query.categories.findMany({
+      limit: pageCount,
+      offset: (page - 1) * pageCount,
+    });
+  }
+
+  // 获取总数
+  static async count() {
+    return (await db.select({ count: count() }).from(categories))[0].count;
   }
 }
 
