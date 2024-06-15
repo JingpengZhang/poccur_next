@@ -34,7 +34,7 @@ export const CategoryController = new Elysia({ prefix: "/category" })
     },
   )
   .patch(
-    "/update",
+    "/",
     async ({ body }) => {
       try {
         // 更新分类
