@@ -2,8 +2,10 @@ import Elysia from "elysia";
 import swagger from "@elysiajs/swagger";
 import { userController } from "./module/user/user.controller";
 import { CategoryController } from "./module/category/category.controller";
+import { cors } from "@elysiajs/cors";
 
 const app = new Elysia()
+  .use(cors())
   // swagger 文档
   .use(
     swagger({
