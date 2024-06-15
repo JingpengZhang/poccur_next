@@ -1,10 +1,8 @@
 import Elysia from "elysia";
 import { JwtService } from "../../common/service/jwt-service";
-import { CategoryModel, CategorySchemas } from "./category.model";
+import { CategoryModel } from "./category.model";
 import CategoryService from "./category.service";
 import Response from "../../libs/response";
-import { categories } from "../../db/schema/categories";
-import { builtinModules } from "module";
 import { CommonModel } from "../../common/common.model";
 
 export const CategoryController = new Elysia({ prefix: "/category" })
@@ -12,7 +10,7 @@ export const CategoryController = new Elysia({ prefix: "/category" })
   .use(CommonModel)
   .use(CategoryModel)
   .post(
-    "/create",
+    "/",
     async ({ body }) => {
       try {
         // 插入分类
