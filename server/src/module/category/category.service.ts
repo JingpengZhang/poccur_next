@@ -1,4 +1,4 @@
-import { count, eq } from "drizzle-orm";
+import { asc, count, desc, eq } from "drizzle-orm";
 import { db } from "../../db";
 import { Category, NewCategory, categories } from "../../db/schema/categories";
 
@@ -31,6 +31,7 @@ abstract class CategoryService {
     return await db.query.categories.findMany({
       limit: pageSize,
       offset: (page - 1) * pageSize,
+      orderBy: [desc(categories.id)],
     });
   }
 
