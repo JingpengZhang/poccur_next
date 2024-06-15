@@ -11,10 +11,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.7",
     "@ant-design/nextjs-registry": "^1.0.0",
+    "@elysiajs/cors": "^1.0.2",
     "@elysiajs/jwt": "^1.0.2",
     "@elysiajs/swagger": "^1.0.5",
+    "ahooks": "^3.8.0",
     "antd": "^5.18.1",
+    "axios": "^1.7.2",
     "drizzle-orm": "^0.31.1",
     "elysia": "^1.0.22",
     "mysql2": "^3.10.0",

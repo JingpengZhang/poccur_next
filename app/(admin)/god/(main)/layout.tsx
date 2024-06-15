@@ -1,9 +1,11 @@
 "use client";
 
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content, Header } from "antd/es/layout/layout";
 import React from "react";
+import SideMenu from "./_components/SideMenu";
+import Breadcrumb from "./_components/Breadcrumb";
 
 export default function PageLayout({ children }: React.PropsWithChildren) {
   const {
@@ -14,7 +16,9 @@ export default function PageLayout({ children }: React.PropsWithChildren) {
     <>
       <Layout className="h-screen">
         <Header style={{ display: "flex", alignItems: "center" }}>
-          <div className="demo-logo" />
+          <div>
+            <h1 className="font-mono">POCCUR_NEXT</h1>
+          </div>
           <Menu
             theme="dark"
             mode="horizontal"
@@ -25,19 +29,10 @@ export default function PageLayout({ children }: React.PropsWithChildren) {
         </Header>
         <Layout>
           <Sider width={200} style={{ background: colorBgContainer }}>
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{ height: "100%", borderRight: 0 }}
-            />
+            <SideMenu />
           </Sider>
           <Layout style={{ padding: "0 24px 24px" }}>
-            <Breadcrumb style={{ margin: "16px 0" }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+            <Breadcrumb style={{ margin: "16px 0" }} />
             <Content
               style={{
                 padding: 24,
