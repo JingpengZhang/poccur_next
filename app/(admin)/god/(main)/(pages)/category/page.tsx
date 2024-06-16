@@ -1,7 +1,11 @@
 "use client";
 
 import { useGetCategoryList } from "@/hooks/requests/category/use-get-category-list";
-import { EditOutlined, ReloadOutlined } from "@ant-design/icons";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ReloadOutlined,
+} from "@ant-design/icons";
 import { Button, Flex, Table, Tooltip } from "antd";
 import CategoryCUModal from "./_components/CategoryCUModal";
 import { useCUModal } from "@/hooks/use-cu-modal";
@@ -61,9 +65,19 @@ export default function Page() {
             dataIndex: "action",
             render: (_, rowData) => {
               return (
-                <Flex align="center">
+                <Flex align="center" gap={12}>
                   <Tooltip title="编辑">
-                    <EditOutlined onClick={() => cuModal.update(rowData)} />
+                    <EditOutlined
+                      className="hover:text-blue-600"
+                      onClick={() => cuModal.update(rowData)}
+                    />
+                  </Tooltip>
+
+                  <Tooltip title="删除">
+                    <DeleteOutlined
+                      className="hover:text-red-600"
+                      onClick={() => {}}
+                    />
                   </Tooltip>
                 </Flex>
               );

@@ -38,7 +38,7 @@ export const CategoryController = new Elysia({ prefix: "/category" })
     async ({ body }) => {
       try {
         // 更新分类
-        await CategoryService.update(parseInt(body.id), {
+        await CategoryService.update(body.id, {
           name: body.name,
         });
 
@@ -58,7 +58,7 @@ export const CategoryController = new Elysia({ prefix: "/category" })
     async ({ body }) => {
       try {
         // 删除分类
-        await CategoryService.delete(parseInt(body.id));
+        await CategoryService.delete(body.id);
         return Response.ok();
       } catch (err: any) {
         return Response.error("UNKOWN", { data: err });
