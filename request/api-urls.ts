@@ -3,6 +3,7 @@ const API_URLS = {
     list: "/category/list",
     create: "/category",
     patch: "/category",
+    delete: "/category",
   },
 };
 

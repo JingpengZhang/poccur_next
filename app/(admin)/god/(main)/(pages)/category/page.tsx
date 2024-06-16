@@ -6,10 +6,13 @@ import {
   EditOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import { Button, Flex, Table, Tooltip } from "antd";
+import { Button, Flex, Popconfirm, Table, Tooltip } from "antd";
 import CategoryCUModal from "./_components/CategoryCUModal";
 import { useCUModal } from "@/hooks/use-cu-modal";
 import { Category } from "@/server/src/db/schema/categories";
+import { useDeleteCategory } from "@/hooks/requests/category/use-delete-category";
+import { useMemoizedFn } from "ahooks";
+import toast from "react-hot-toast";
 
 export default function Page() {
   // 列表
@@ -27,6 +30,22 @@ export default function Page() {
     onUpdateSuccess: () => {
       refresh();
     },
+  });
+
+  // 删除请求
+  const { runAsync: deleteRunAsync } = useDeleteCategory();
+
+  // 删除分类
+  const deleteCategories = useMemoizedFn((ids: Array<Category["id"]>) => {
+    const handler = [];
+    for (let i = 0; i < ids.length; i++) {
+      handler.push(deleteRunAsync({ id: ids[i] }));
+    }
+
+    Promise.all(handler).then(() => {
+      toast.success("删除成功");
+      refresh();
+    });
   });
 
   return (
@@ -74,10 +93,13 @@ export default function Page() {
                   </Tooltip>
 
                   <Tooltip title="删除">
-                    <DeleteOutlined
-                      className="hover:text-red-600"
-                      onClick={() => {}}
-                    />
+                    <Popconfirm
+                      title="提示"
+                      description="确认删除此分类，请谨慎操作"
+                      onConfirm={() => deleteCategories([rowData.id])}
+                    >
+                      <DeleteOutlined className="hover:text-red-600" />
+                    </Popconfirm>
                   </Tooltip>
                 </Flex>
               );

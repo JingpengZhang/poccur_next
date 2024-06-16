@@ -131,6 +131,12 @@ export const requestManager = {
 
     return axiosInstance.get(url + queryStr);
   },
+  delete: <P extends object | undefined, T>(
+    url: string,
+    params?: P,
+  ): Promise<T> => {
+    return axiosInstance.delete(url, { data: params });
+  },
 };
 
 export default axiosInstance;
