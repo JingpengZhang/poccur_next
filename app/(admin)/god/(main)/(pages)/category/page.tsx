@@ -6,15 +6,19 @@ import {
   EditOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import { Button, Flex, Popconfirm, Table, Tooltip } from "antd";
+import { App, Button, Flex, Table, Tooltip } from "antd";
 import CategoryCUModal from "./_components/CategoryCUModal";
 import { useCUModal } from "@/hooks/use-cu-modal";
 import { Category } from "@/server/src/db/schema/categories";
 import { useDeleteCategory } from "@/hooks/requests/category/use-delete-category";
 import { useMemoizedFn } from "ahooks";
 import toast from "react-hot-toast";
+import React, { useState } from "react";
+import { setServers } from "dns";
 
 export default function Page() {
+  const { modal } = App.useApp();
+
   // 列表
   const { tableProps, refresh, run, pagination } = useGetCategoryList();
 
@@ -33,20 +37,26 @@ export default function Page() {
   });
 
   // 删除请求
-  const { runAsync: deleteRunAsync } = useDeleteCategory();
+  const { runAsync: deleteRunAsync, loading: deleteLoading } =
+    useDeleteCategory();
 
   // 删除分类
   const deleteCategories = useMemoizedFn((ids: Array<Category["id"]>) => {
-    const handler = [];
-    for (let i = 0; i < ids.length; i++) {
-      handler.push(deleteRunAsync({ id: ids[i] }));
-    }
+    modal.confirm({
+      content: "确认删除所选分类，请谨慎操作",
+      onOk: async () => {
+        for (let i = 0; i < ids.length; i++) {
+          await deleteRunAsync({ id: ids[i] });
+        }
 
-    Promise.all(handler).then(() => {
-      toast.success("删除成功");
-      refresh();
+        toast.success("删除成功");
+        refresh();
+      },
     });
   });
+
+  // 所选数据
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   return (
     <>
@@ -56,6 +66,14 @@ export default function Page() {
         <h2 className="text-lg">分类表格</h2>
 
         <Flex gap={16} align="center">
+          <Button
+            type="primary"
+            danger
+            disabled={selectedRowKeys.length === 0}
+            onClick={() => deleteCategories(selectedRowKeys as number[])}
+          >
+            删除所选
+          </Button>
           <Button type="primary" onClick={cuModal.create}>
             新增
           </Button>
@@ -69,6 +87,11 @@ export default function Page() {
       </Flex>
       <Table
         rowKey="id"
+        rowSelection={{
+          type: "checkbox",
+          selectedRowKeys,
+          onChange: (keys) => setSelectedRowKeys(keys),
+        }}
         columns={[
           {
             title: "ID",
@@ -93,13 +116,10 @@ export default function Page() {
                   </Tooltip>
 
                   <Tooltip title="删除">
-                    <Popconfirm
-                      title="提示"
-                      description="确认删除此分类，请谨慎操作"
-                      onConfirm={() => deleteCategories([rowData.id])}
-                    >
-                      <DeleteOutlined className="hover:text-red-600" />
-                    </Popconfirm>
+                    <DeleteOutlined
+                      onClick={() => deleteCategories([rowData.id])}
+                      className="hover:text-red-600"
+                    />
                   </Tooltip>
                 </Flex>
               );
@@ -107,6 +127,7 @@ export default function Page() {
           },
         ]}
         {...tableProps}
+        loading={tableProps.loading || deleteLoading}
       />
     </>
   );

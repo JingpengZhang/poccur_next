@@ -24,7 +24,6 @@ export const useDeleteCategory = () => {
     },
     {
       manual: true,
-      throttleWait: 500,
     },
   );
 };
