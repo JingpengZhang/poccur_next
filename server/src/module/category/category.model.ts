@@ -9,7 +9,7 @@ export const CategorySchemas = {
     }),
   }),
   // id
-  id: t.String(),
+  id: t.Numeric(),
 };
 
 export const CategoryModel = new Elysia({
