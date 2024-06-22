@@ -11,7 +11,12 @@ type Data = {
   data: RequestModule.ListData<Category>;
 };
 
-export const useGetCategoryList = (form?: FormInstance) => {
+export const useGetCategoryList = (
+  form?: FormInstance,
+  options?: {
+    type?: Params["type"];
+  },
+) => {
   return useAntdTable(
     async (page) => {
       const data = await requestManager.get<Params, Data>(
@@ -19,6 +24,7 @@ export const useGetCategoryList = (form?: FormInstance) => {
         {
           page: page.current,
           pageSize: page.pageSize,
+          type: options?.type,
         },
       );
 

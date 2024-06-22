@@ -3,6 +3,7 @@ declare namespace RequestModule {
   type ListParams = {
     page?: number;
     pageSize?: number;
+    type?: "all" | "list";
   };
 
   // 列表返回

@@ -8,6 +8,10 @@ const SideMenu = () => {
   const adminPagePrefix = "/god";
   const menus: MenuProps["items"] = [
     {
+      key: adminPagePrefix + "/write-article",
+      label: "写博文",
+    },
+    {
       key: "/article",
       label: "博文管理",
       children: [

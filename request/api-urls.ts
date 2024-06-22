@@ -5,6 +5,9 @@ const API_URLS = {
     patch: "/category",
     delete: "/category",
   },
+  article: {
+    index: "/article",
+  },
 };
 
 export default API_URLS;

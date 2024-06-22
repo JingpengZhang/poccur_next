@@ -16,7 +16,9 @@ message.config({
 axiosInstance.interceptors.request.use(
   (config) => {
     // token
-    const token = localStorage.getItem("token") || "";
+    const token =
+      localStorage.getItem("token") ||
+      "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNzE4NzkwNjg3fQ.o24tHaNfIdtMolGgRpTyZW3iHUPcVFkd5-Yxd3hcxr8";
     config.headers.Authorization = `Bearer ${token}`;
 
     return config;
