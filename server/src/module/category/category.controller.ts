@@ -70,12 +70,17 @@ export const CategoryController = new Elysia({ prefix: "/category" })
   )
   .get(
     "/list",
-    async ({ query }) => {
+    async ({
+      query,
+    }): Promise<
+      ReturnType<typeof Response.ok> | ReturnType<typeof Response.error>
+    > => {
       try {
         // 查找列表
         const result = await CategoryService.queryList(
           query.page,
           query.pageSize,
+          query.type,
         );
 
         const total = await CategoryService.count();
@@ -93,6 +98,6 @@ export const CategoryController = new Elysia({ prefix: "/category" })
       }
     },
     {
-      query: "common.list",
+      query: "common.listWithType",
     },
   );

@@ -27,10 +27,14 @@ abstract class CategoryService {
   }
 
   // 获取列表
-  static async queryList(page: number, pageSize: number) {
+  static async queryList(
+    page: number = 1,
+    pageSize: number = 10,
+    type: "list" | "all" = "list",
+  ) {
     return await db.query.categories.findMany({
-      limit: pageSize,
-      offset: (page - 1) * pageSize,
+      limit: type === "list" ? pageSize : undefined,
+      offset: type === "list" ? (page - 1) * pageSize : undefined,
       orderBy: [desc(categories.id)],
     });
   }

@@ -1,4 +1,5 @@
 export type RESPONSE_TYPES_NAME =
+  | "UNAUTHORIZATION"
   | "SUCCESS"
   | "SIGN_IN_FAIL"
   | "FIELD_IS_MISSING"
@@ -11,6 +12,11 @@ export const RESPONSE_TYPES: {
     message: string;
   };
 } = {
+  // 未登录
+  UNAUTHORIZATION: {
+    code: 100,
+    message: "认证失败",
+  },
   SUCCESS: {
     code: 200,
     message: "请求成功",

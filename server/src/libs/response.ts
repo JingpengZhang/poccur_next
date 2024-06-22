@@ -10,8 +10,8 @@ class Response {
     data?: object;
     message?: string;
     list?: {
-      page: number;
-      pageSize: number;
+      page?: number;
+      pageSize?: number;
       total: number;
     };
   }) {
@@ -21,7 +21,9 @@ class Response {
       data: options?.list
         ? {
             list: options.data,
-            ...options.list,
+            page: options.list.page ?? 1,
+            pageSize: options.list.pageSize ?? 10,
+            total: options.list.total,
           }
         : options?.data,
     };
