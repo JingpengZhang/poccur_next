@@ -1,4 +1,5 @@
 import ArticleListItem from "@/components/article/ArticleListItem";
+import CategoryListItem from "@/components/category/CategoryListItem";
 import { Article } from "@/server/src/db/schema/articles";
 import { Button, Col, Grid, Input, Row, Table } from "antd";
 
@@ -44,8 +45,8 @@ export default function Home() {
 
   return (
     <main>
-      <section className="w-page mx-auto">
-        <div className="w-3/5">
+      <section className="w-page mx-auto flex justify-between">
+        <div className="w-3/5 flex-shrink-0">
           <Row gutter={20} className="w-full">
             {articles.map((item) => (
               <Col span={12} key={item.id} className="aspect-[360/288] mb-6">
@@ -53,6 +54,9 @@ export default function Home() {
               </Col>
             ))}
           </Row>
+        </div>
+        <div className="flex-grow">
+          <CategoryListItem className="h-14 w-full" />
         </div>
       </section>
     </main>
