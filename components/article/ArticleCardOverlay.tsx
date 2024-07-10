@@ -2,15 +2,14 @@ import { Article } from "@/server/src/db/schema/articles";
 import { Flex } from "antd";
 import React from "react";
 import CategoryTag from "../category/CategoryTag";
-import dayjs from "dayjs";
 import Link from "next/link";
-import { IoTimeOutline } from "react-icons/io5";
+import TimeWithIcon from "../time/TimeWithIcon";
 
 type Props = {
   data: Article;
 };
 
-const ArticleListItem: React.FC<Props> = ({ data }) => {
+const ArticleCardOverlay: React.FC<Props> = ({ data }) => {
   return (
     <>
       <div
@@ -34,12 +33,7 @@ const ArticleListItem: React.FC<Props> = ({ data }) => {
             >
               {data.title}
             </Link>
-            <Flex align="center" gap={4} className=" mt-2">
-              <IoTimeOutline />
-              <span className="text-xs">
-                {dayjs(data.createAt).format("YYYY-MM-DD")}
-              </span>
-            </Flex>
+            <TimeWithIcon timestamp={data.createAt as any as string} />
           </div>
         </Flex>
       </div>
@@ -47,4 +41,4 @@ const ArticleListItem: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default ArticleListItem;
+export default ArticleCardOverlay;
