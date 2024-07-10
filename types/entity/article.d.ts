@@ -9,7 +9,7 @@ type Article = {
 };
 
 type ArticleItem = Pick<Article, "id" | "title" | "createdAt" | "updatedAt"> & {
-  category: Pick<Category, "id" | "name">;
+  category: Category;
   user: Pick<User, "id" | "username" | "avatar">; // 作者信息
   cover: UserFile["path"]; // 封面
 };

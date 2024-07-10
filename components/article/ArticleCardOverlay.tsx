@@ -23,7 +23,7 @@ const ArticleCardOverlay: React.FC<Props> = ({ data }) => {
           justify="space-between"
           className="absolute top-0 left-0 w-full h-full bg-black_06 p-4"
         >
-          <CategoryTag />
+          <CategoryTag data={data.category} />
 
           <div>
             <Link

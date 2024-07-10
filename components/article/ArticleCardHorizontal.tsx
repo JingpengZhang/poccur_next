@@ -17,7 +17,7 @@ const ArticleCardHorizontal: React.FC<Props> = ({ className, data, index }) => {
       <Flex justify="space-between" className={className}>
         <Flex className="h-full" justify="space-between" vertical>
           <div>
-            <CategoryTag />
+            <CategoryTag data={data.category} />
             <Link
               href=""
               className="leading-6 mt-2 block text-black hover:text-black font-bold text-lg"

@@ -7,6 +7,7 @@ export const categoriesList: Category[] = Mock.mock({
       name: "@name",
       articleCount: "@integer(0,100)",
       pic: "@dataImage",
+      color: "@color",
     },
   ],
 });

@@ -12,6 +12,11 @@ export const articlesList: ArticleItem[] = Mock.mock({
       cover: "@dataImage",
       createdAt: "@date",
       updateAt: "@date",
+      category: {
+        id: "@increment(1)",
+        name: "@name",
+        color: "@color",
+      },
     },
   ],
 });
