@@ -1,22 +1,25 @@
 import { Article } from "@/server/src/db/schema/articles";
 import { Flex } from "antd";
-import React from "react";
+import React, { CSSProperties } from "react";
 import CategoryTag from "../category/CategoryTag";
 import Link from "next/link";
 import TimeWithIcon from "../time/TimeWithIcon";
 
 type Props = {
+  className?:string;
+  style?:CSSProperties;
   data: ArticleItem;
 };
 
-const ArticleCardOverlay: React.FC<Props> = ({ data }) => {
+const ArticleCardOverlay: React.FC<Props> = ({ data,style,className }) => {
   return (
     <>
       <div
         style={{
           backgroundImage: `url(${data.cover})`,
+          ...style
         }}
-        className="relative w-full h-full rounded-lg overflow-hidden bg-center bg-cover bg-no-repeat"
+        className={`relative rounded-lg overflow-hidden bg-center bg-cover bg-no-repeat ${className}`}
       >
         <Flex
           vertical

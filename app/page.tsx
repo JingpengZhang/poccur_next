@@ -2,6 +2,7 @@
 
 import ArticleCardHorizontal from "@/components/article/ArticleCardHorizontal";
 import ArticleCardOverlay from "@/components/article/ArticleCardOverlay";
+import LittleArticleCardCarousel from "@/components/article/LittleArticleCardCarousel";
 import CategoryListItem from "@/components/category/CategoryListItem";
 import ModuleTitle from "@/components/ModuleTitle";
 import { articlesList } from "@/hooks/mock/article";
@@ -12,17 +13,17 @@ export default function Home() {
   return (
     <main>
       <section className="w-page mx-auto flex justify-between">
-        <div className="w-[70%] flex-shrink-0">
+        <div className="flex-grow ">
           <Row gutter={20} className="w-full">
             {/* @ts-ignore */}
             {articlesList.list.map((item) => (
               <Col span={12} key={item.id} className="aspect-[360/288] mb-6">
-                <ArticleCardOverlay data={item} />
+                <ArticleCardOverlay data={item} className="w-full h-full" />
               </Col>
             ))}
           </Row>
         </div>
-        <div className="flex-grow">
+        <div className="flex-shrink-0 w-[300px]">
           <Flex vertical gap={10} className="">
             {/* @ts-ignore */}
             {categoriesList.list.map((item) => (
@@ -45,6 +46,10 @@ export default function Home() {
               />
             ))}
           </Flex>
+          <LittleArticleCardCarousel
+            data={(articlesList as any).list}
+            className="mt-12"
+          />
         </div>
       </section>
     </main>
