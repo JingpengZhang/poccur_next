@@ -4,17 +4,17 @@ import React from "react";
 
 type Props = {
   className?: string;
+  data: Category;
 };
 
-const CategoryListItem: React.FC<Props> = ({ className }) => {
+const CategoryListItem: React.FC<Props> = ({ className, data }) => {
   return (
     <>
       <Link
         href={""}
         className={`block text-white hover:text-white rounded-lg overflow-hidden ${className}`}
         style={{
-          backgroundImage:
-            "url(https://jellywp.com/theme/disto/demo/wp-content/uploads/2019/03/daniel-korpai-1296140-unsplash-780x450.jpg)",
+          backgroundImage: `url(${data.pic})`,
         }}
       >
         <Flex
@@ -22,13 +22,13 @@ const CategoryListItem: React.FC<Props> = ({ className }) => {
           justify="space-between"
           className="bg-black_06 w-full h-full px-4"
         >
-          <span>React</span>
+          <span>{data.name}</span>
           <Flex
             align="center"
             justify="center"
             className=" h-6 aspect-square text-xs bg-white rounded-full text-black"
           >
-            11
+            {data.articleCount}
           </Flex>
         </Flex>
       </Link>

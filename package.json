@@ -22,6 +22,7 @@
     "dayjs": "^1.11.11",
     "drizzle-orm": "^0.31.1",
     "elysia": "^1.0.22",
+    "mockjs": "^1.1.0",
     "mysql2": "^3.10.0",
     "next": "14.2.3",
     "react": "^18",
@@ -30,6 +31,7 @@
     "react-icons": "^5.2.1"
   },
   "devDependencies": {
+    "@types/mockjs": "^1.0.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

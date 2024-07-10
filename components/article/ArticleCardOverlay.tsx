@@ -6,7 +6,7 @@ import Link from "next/link";
 import TimeWithIcon from "../time/TimeWithIcon";
 
 type Props = {
-  data: Article;
+  data: ArticleItem;
 };
 
 const ArticleCardOverlay: React.FC<Props> = ({ data }) => {
@@ -14,8 +14,7 @@ const ArticleCardOverlay: React.FC<Props> = ({ data }) => {
     <>
       <div
         style={{
-          backgroundImage:
-            "url(https://jellywp.com/theme/disto/demo/wp-content/uploads/2019/03/daniel-korpai-1296140-unsplash-780x450.jpg)",
+          backgroundImage: `url(${data.cover})`,
         }}
         className="relative w-full h-full rounded-lg overflow-hidden bg-center bg-cover bg-no-repeat"
       >

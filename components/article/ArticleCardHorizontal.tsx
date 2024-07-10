@@ -7,7 +7,7 @@ import Link from "next/link";
 
 type Props = {
   className?: string;
-  data: Article;
+  data: ArticleItem;
   index?: number; // 次序
 };
 
@@ -26,14 +26,14 @@ const ArticleCardHorizontal: React.FC<Props> = ({ className, data, index }) => {
             </Link>
           </div>
           <TimeWithIcon
-            timestamp={data.createAt as any as string}
+            timestamp={data.createdAt as any as string}
             className="text-stone-500"
           />
         </Flex>
         <div className="h-full aspect-square rounded-lg overflow-hidden relative">
           <Image
             className="w-full h-full object-cover"
-            src="https://s21.ax1x.com/2024/07/10/pkfhIJI.jpg"
+            src={data.cover}
             alt="封面"
             width={300}
             height={300}
