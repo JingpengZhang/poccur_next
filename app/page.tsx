@@ -1,6 +1,7 @@
 import ArticleCardHorizontal from "@/components/article/ArticleCardHorizontal";
 import ArticleCardOverlay from "@/components/article/ArticleCardOverlay";
 import CategoryListItem from "@/components/category/CategoryListItem";
+import ModuleTitle from "@/components/ModuleTitle";
 import { Article } from "@/server/src/db/schema/articles";
 import { Button, Col, Flex, Grid, Input, Row, Table } from "antd";
 
@@ -58,6 +59,7 @@ export default function Home() {
         </div>
         <div className="flex-grow">
           <CategoryListItem className="h-14 w-full" />
+          <ModuleTitle>Recent Post</ModuleTitle>
           <Flex vertical gap={30} className="mt-8">
             {articles.map((item, index) => (
               <ArticleCardHorizontal
