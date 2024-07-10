@@ -1,7 +1,8 @@
+import ArticleCardHorizontal from "@/components/article/ArticleCardHorizontal";
 import ArticleCardOverlay from "@/components/article/ArticleCardOverlay";
 import CategoryListItem from "@/components/category/CategoryListItem";
 import { Article } from "@/server/src/db/schema/articles";
-import { Button, Col, Grid, Input, Row, Table } from "antd";
+import { Button, Col, Flex, Grid, Input, Row, Table } from "antd";
 
 export default function Home() {
   const articles: Article[] = [
@@ -57,6 +58,16 @@ export default function Home() {
         </div>
         <div className="flex-grow">
           <CategoryListItem className="h-14 w-full" />
+          <Flex vertical gap={30} className="mt-8">
+            {articles.map((item, index) => (
+              <ArticleCardHorizontal
+                data={item}
+                key={item.id}
+                className="h-24"
+                index={index + 1}
+              />
+            ))}
+          </Flex>
         </div>
       </section>
     </main>
