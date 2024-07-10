@@ -1,4 +1,4 @@
-import ArticleListItem from "@/components/article/ArticleListItem";
+import ArticleCardOverlay from "@/components/article/ArticleCardOverlay";
 import CategoryListItem from "@/components/category/CategoryListItem";
 import { Article } from "@/server/src/db/schema/articles";
 import { Button, Col, Grid, Input, Row, Table } from "antd";
@@ -50,7 +50,7 @@ export default function Home() {
           <Row gutter={20} className="w-full">
             {articles.map((item) => (
               <Col span={12} key={item.id} className="aspect-[360/288] mb-6">
-                <ArticleListItem data={item} />
+                <ArticleCardOverlay data={item} />
               </Col>
             ))}
           </Row>

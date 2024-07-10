@@ -4,6 +4,7 @@ import React from "react";
 import CategoryTag from "../category/CategoryTag";
 import dayjs from "dayjs";
 import Link from "next/link";
+import { IoTimeOutline } from "react-icons/io5";
 
 type Props = {
   data: Article;
@@ -33,9 +34,12 @@ const ArticleListItem: React.FC<Props> = ({ data }) => {
             >
               {data.title}
             </Link>
-            <span className="text-xs mt-2">
-              {dayjs(data.createAt).format("YYYY-MM-DD")}
-            </span>
+            <Flex align="center" gap={4} className=" mt-2">
+              <IoTimeOutline />
+              <span className="text-xs">
+                {dayjs(data.createAt).format("YYYY-MM-DD")}
+              </span>
+            </Flex>
           </div>
         </Flex>
       </div>
