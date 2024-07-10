@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AntdWrapper from "@/components/AntdWrapper";
 import { Toaster } from "react-hot-toast";
+import Navigation from "@/components/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="pt-20">
         <Toaster
           toastOptions={{
             style: {
@@ -27,6 +28,7 @@ export default function RootLayout({
             },
           }}
         />
+        <Navigation />
         <AntdWrapper>{children}</AntdWrapper>
       </body>
     </html>
