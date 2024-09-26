@@ -1,11 +1,12 @@
-import { mysqlTable, serial, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { mysqlTable, varchar } from "drizzle-orm/mysql-core";
+import { withCommonColumns } from "../common";
 
-export const categories = mysqlTable("categories", {
-  id: serial("id").primaryKey().autoincrement(),
-  name: varchar("name", { length: 50 }).unique(),
-  createAt: timestamp("create_at"),
-  updateAt: timestamp("update_at"),
-});
+export const categories = mysqlTable(
+  "categories",
+  withCommonColumns({
+    name: varchar("name", { length: 50 }).unique().notNull(),
+  })
+);
 
 export type Category = typeof categories.$inferSelect;
 export type NewCategory = typeof categories.$inferInsert;

@@ -17,7 +17,7 @@ export const userController = new Elysia({ prefix: "/user" })
       detail: {
         tags: ["User"],
       },
-    },
+    }
   )
   .post(
     "/sign-in",
@@ -45,5 +45,5 @@ export const userController = new Elysia({ prefix: "/user" })
       detail: {
         tags: ["User"],
       },
-    },
+    }
   );
